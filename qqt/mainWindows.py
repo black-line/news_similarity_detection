@@ -23,6 +23,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.setWindowIcon(QIcon('images/icons8-google-news-24.png'))
         self.crawlNone = 'Nothing had been crawled, try another url.'
         self.exit.triggered.connect(self.close)
+        if self.stackedWidget.currentIndex() == 0:
+            self.simiBtn.setStyleSheet("""
+                                    color: #fff;
+                                    text-decoration: none;
+                                    background-color: #28a745;
+                                    border-color:#28a745;
+                                    text-decoration: none;""")
+        elif self.stackedWidget.currentIndex() == 1:
+            self.kwBtn.setStyleSheet("""
+                                    color: #fff;
+                                    text-decoration: none;
+                                    background-color: #28a745;
+                                    border-color:#28a745;
+                                    text-decoration: none;""")
+        else:
+            self.settingsBtn.setStyleSheet("""
+                                    color: #fff;
+                                    text-decoration: none;
+                                    background-color: #28a745;
+                                    border-color:#28a745;
+                                    text-decoration: none;""")
         # Connect up the buttons.
         # self.okButton.clicked.connect(self.accept)
         # self.cancelButton.clicked.connect(self.reject)
@@ -33,9 +54,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.kwBtn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
         # self.settingsBtn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
 
-        self.simiBtn.clicked.connect(self.from_to(self.stackedWidget.currentWidget(), 0))
-        self.kwBtn.clicked.connect(self.from_to(self.stackedWidget.currentWidget(), 1))
-        self.settingsBtn.clicked.connect(self.from_to(self.stackedWidget.currentWidget(), 2))
+        self.simiBtn.clicked.connect(lambda: self.from_to(0, self.simiBtn))
+        self.kwBtn.clicked.connect(lambda: self.from_to(1, self.kwBtn))
+        self.settingsBtn.clicked.connect(lambda: self.from_to(2, self.settingsBtn))
 
         self.statBtn.clicked.connect(self.statBtn_on_click)
         self.closeStatBtn.clicked.connect(self.closeStatBtn_on_click)
@@ -49,16 +70,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.process.started.connect(lambda: self.statBtn.setEnabled(False))
         self.process.finished.connect(lambda: self.statBtn.setEnabled(True))
 
-    def from_to(self, fr, to):
-        print('clicked')
-        # print(self.stackedWidget.currentWidget())
-        # toBtn.setStyleSheet(""" color: #fff;
-        #                             text-decoration: none;
-        #                             background-color: #28a745;
-        #                             border-color:#28a745;
-        #                             text-decoration: none;
-        #                         """)
-        return lambda: self.stackedWidget.setCurrentIndex(to)
+    def from_to(self, to, toBtn):
+        if self.stackedWidget.currentIndex() == to:
+            pass
+        else:
+            if self.stackedWidget.currentIndex() == 0:
+                self.simiBtn.setStyleSheet("""""")
+            elif self.stackedWidget.currentIndex() == 1:
+                self.kwBtn.setStyleSheet("""""")
+            else:
+                self.settingsBtn.setStyleSheet("""""")
+            self.stackedWidget.setCurrentIndex(to)
+            toBtn.setStyleSheet(""" color: #fff;
+                                     text-decoration: none;
+                                     background-color: #28a745;
+                                     border-color:#28a745;
+                                     text-decoration: none;
+                                 """)
 
     def closeStatBtn_on_click(self):
         print('stopStat button clicked')
