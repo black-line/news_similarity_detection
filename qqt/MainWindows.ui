@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>983</width>
-    <height>809</height>
+    <width>1021</width>
+    <height>841</height>
    </rect>
   </property>
   <property name="font">
@@ -26,6 +26,56 @@
    <locale language="Chinese" country="China"/>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>WenQuanYi Micro Hei</family>
+     <pointsize>18</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget{
+font-size:18pt;
+font-family:&quot;WenQuanYi Micro Hei&quot;;
+font-weight: 400;
+}
+QPushButton{
+border-width:1px;
+border-style:solid;
+border-radius: 4px;
+background-color:transparent;
+padding:6px 12px;
+}
+QPushButton#url1ResetBtn, 
+QPushButton#url2ResetBtn{
+color: #dc3545;
+border-color: #dc3545;
+}
+QPushButton#url1CrawlBtn, 
+QPushButton#url2CrawlBtn,
+QPushButton#detectBtn{
+color: #28a745;
+border-color: #28a745;
+}
+QPushButton:hover#url1CrawlBtn,  
+QPushButton:hover#url2CrawlBtn,
+QPushButton:hover#detectBtn{
+color: #fff;
+text-decoration: none;
+background-color: #28a745;
+border-color:#28a745;
+text-decoration: none;
+}
+QPushButton:hover#url1ResetBtn, 
+QPushButton:hover#url2ResetBtn{
+color: #fff;
+text-decoration: none;
+background-color: #dc3545;
+border-color:#dc3545;
+text-decoration: none;
+}</string>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -68,6 +118,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
@@ -83,6 +136,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
              </widget>
@@ -92,10 +148,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
                 <weight>50</weight>
-                <italic>false</italic>
                 <bold>false</bold>
-                <underline>false</underline>
                </font>
               </property>
               <property name="locale">
@@ -111,6 +166,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
@@ -130,6 +188,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
@@ -145,6 +206,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
              </widget>
@@ -154,6 +218,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
@@ -169,6 +236,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
@@ -192,13 +262,16 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
                <locale language="Chinese" country="China"/>
               </property>
               <property name="text">
-               <string>新闻1内容:</string>
+               <string>新闻1标题:</string>
               </property>
              </widget>
             </item>
@@ -207,6 +280,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
@@ -226,13 +302,16 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
                <locale language="Chinese" country="China"/>
               </property>
               <property name="text">
-               <string>新闻2内容:</string>
+               <string>新闻2标题:</string>
               </property>
              </widget>
             </item>
@@ -241,6 +320,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
@@ -264,6 +346,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
@@ -275,17 +360,17 @@
              </widget>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="tag1">
+             <widget class="QTextEdit" name="tag1">
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
                <locale language="Chinese" country="China"/>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -298,6 +383,9 @@
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
@@ -309,17 +397,17 @@
              </widget>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="tag2">
+             <widget class="QTextEdit" name="tag2">
               <property name="font">
                <font>
                 <family>WenQuanYi Micro Hei</family>
+                <pointsize>18</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
                </font>
               </property>
               <property name="locale">
                <locale language="Chinese" country="China"/>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -334,6 +422,9 @@
             <property name="font">
              <font>
               <family>WenQuanYi Micro Hei</family>
+              <pointsize>18</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
              </font>
             </property>
             <property name="locale">
@@ -349,6 +440,9 @@
             <property name="font">
              <font>
               <family>WenQuanYi Micro Hei</family>
+              <pointsize>18</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
              </font>
             </property>
             <property name="locale">
@@ -377,6 +471,9 @@
             <property name="font">
              <font>
               <family>WenQuanYi Micro Hei</family>
+              <pointsize>18</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
              </font>
             </property>
             <property name="locale">
@@ -390,9 +487,6 @@
          </layout>
         </item>
        </layout>
-       <zorder>kwBtn</zorder>
-       <zorder>simiBtn</zorder>
-       <zorder>tag1</zorder>
       </widget>
       <widget class="QWidget" name="page2">
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -437,7 +531,10 @@
            <widget class="QPlainTextEdit" name="output">
             <property name="font">
              <font>
-              <family>Ubuntu Mono</family>
+              <family>WenQuanYi Micro Hei</family>
+              <pointsize>18</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
              </font>
             </property>
             <property name="locale">
@@ -462,48 +559,56 @@
       <widget class="QWidget" name="page3">
        <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_15">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
-            <item>
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>MONGODB_SERVER:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_10">
-              <property name="text">
-               <string>MONGODB_PORT:</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLineEdit" name="lineEdit_2"/>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>MONGODB_SERVER</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_3"/>
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>MONGODB_PORT</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <widget class="QLineEdit" name="lineEdit_2">
+              <property name="text">
+               <string>localhost</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_3">
+              <property name="text">
+               <string>27017</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="pushButton_3">
                 <property name="text">
                  <string>检测</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_3">
+               <widget class="QPushButton" name="pushButton">
                 <property name="text">
                  <string>确定</string>
                 </property>
@@ -512,9 +617,12 @@
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
                <widget class="QPushButton" name="pushButton_4">
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
                 <property name="text">
                  <string>检测</string>
                 </property>
@@ -534,7 +642,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_8">
+         <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
            <widget class="QLabel" name="label_11">
             <property name="text">
@@ -556,18 +664,13 @@
      </widget>
     </item>
    </layout>
-   <zorder>stackedWidget</zorder>
-   <zorder>simiBtn</zorder>
-   <zorder>kwBtn</zorder>
-   <zorder>kwBtn</zorder>
-   <zorder>simiBtn</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>983</width>
+     <width>1021</width>
      <height>26</height>
     </rect>
    </property>
@@ -645,12 +748,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>790</x>
-     <y>95</y>
+     <x>781</x>
+     <y>102</y>
     </hint>
     <hint type="destinationlabel">
-     <x>776</x>
-     <y>92</y>
+     <x>690</x>
+     <y>103</y>
     </hint>
    </hints>
   </connection>

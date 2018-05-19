@@ -45,7 +45,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.process.started.connect(lambda: self.statBtn.setEnabled(False))
         self.process.finished.connect(lambda: self.statBtn.setEnabled(True))
 
-
     def closeStatBtn_on_click(self):
         print('stopStat button clicked')
         if self.process.isOpen():
@@ -87,12 +86,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             else:
                 self.news2.setPlainText(self.crawlNone)
 
+    def tag_to_str(self, tag):
+        # tag_to_str=''
+        # for t in tag:
+        #     tag_to_str+='<b>{0}</b>: {1}<br/>'.format(t[0],t[1])
+        tag_to_str = """<table><tr><td>{0}</td><td>{1}</td></tr>""".format('关键词','权重')
+        for t in tag:
+            tag_to_str+='<tr><td><b>{0}:</b></td><td>{1}</td></tr>'.format(t[0],t[1])
+        tag_to_str +="""</table>"""
+        return tag_to_str
+
     def detectBtn_on_click(self):
         print('detectBtn clicked')
-        s1, p1 = self.get_simhash(text=self.news1.toPlainText())
-        s2, p2 = self.get_simhash(text=self.news2.toPlainText())
-        self.tag1.setPlainText(p1.__str__())
-        self.tag2.setPlainText(p2.__str__())
+        s1, t1 = self.get_simhash(text=self.news1.toPlainText())
+        s2, t2 = self.get_simhash(text=self.news2.toPlainText())
+        self.tag1.setText(self.tag_to_str(t1))
+        self.tag2.setText(self.tag_to_str(t2))
         dis = self.get_distance(s1, s2)
         self.distance.setText('{0}%, 在32位哈希值有{1}位不同'.format(str((1 - dis / 32) * 100), dis.__str__()))
 
