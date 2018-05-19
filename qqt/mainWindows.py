@@ -29,9 +29,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.url1CrawlBtn.clicked.connect(self.url1CrawlBtn_on_click)
         self.url2CrawlBtn.clicked.connect(self.url2CrawlBtn_on_click)
         self.detectBtn.clicked.connect(self.detectBtn_on_click)
-        self.simiBtn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
-        self.kwBtn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
-        self.settingsBtn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
+        # self.simiBtn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
+        # self.kwBtn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
+        # self.settingsBtn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
+
+        self.simiBtn.clicked.connect(self.from_to(self.stackedWidget.currentWidget(), 0))
+        self.kwBtn.clicked.connect(self.from_to(self.stackedWidget.currentWidget(), 1))
+        self.settingsBtn.clicked.connect(self.from_to(self.stackedWidget.currentWidget(), 2))
 
         self.statBtn.clicked.connect(self.statBtn_on_click)
         self.closeStatBtn.clicked.connect(self.closeStatBtn_on_click)
@@ -44,6 +48,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Disable the button when process starts, and enable it when it finishes
         self.process.started.connect(lambda: self.statBtn.setEnabled(False))
         self.process.finished.connect(lambda: self.statBtn.setEnabled(True))
+
+    def from_to(self, fr, to):
+        print('clicked')
+        # print(self.stackedWidget.currentWidget())
+        # toBtn.setStyleSheet(""" color: #fff;
+        #                             text-decoration: none;
+        #                             background-color: #28a745;
+        #                             border-color:#28a745;
+        #                             text-decoration: none;
+        #                         """)
+        return lambda: self.stackedWidget.setCurrentIndex(to)
 
     def closeStatBtn_on_click(self):
         print('stopStat button clicked')
@@ -90,10 +105,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # tag_to_str=''
         # for t in tag:
         #     tag_to_str+='<b>{0}</b>: {1}<br/>'.format(t[0],t[1])
-        tag_to_str = """<table><tr><td>{0}</td><td>{1}</td></tr>""".format('关键词','权重')
+        tag_to_str = """<table><tr><td>{0}</td><td>{1}</td></tr>""".format('关键词', '权重')
         for t in tag:
-            tag_to_str+='<tr><td><b>{0}:</b></td><td>{1}</td></tr>'.format(t[0],t[1])
-        tag_to_str +="""</table>"""
+            tag_to_str += '<tr><td><b>{0}:</b></td><td>{1}</td></tr>'.format(t[0], t[1])
+        tag_to_str += """</table>"""
         return tag_to_str
 
     def detectBtn_on_click(self):

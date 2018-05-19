@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1021</width>
-    <height>841</height>
+    <width>1088</width>
+    <height>728</height>
    </rect>
   </property>
   <property name="font">
@@ -22,6 +22,9 @@
    <iconset resource="resources.qrc">
     <normaloff>:/images/images/icons8-google-news-24.png</normaloff>:/images/images/icons8-google-news-24.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <property name="locale">
    <locale language="Chinese" country="China"/>
   </property>
@@ -35,7 +38,12 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget{
+    <string notr="true">QWidget#centralwidget{
+background-color: rgb(231, 231, 231);
+}
+QWidget{
+background-color:transparent;
+opacity: 23;
 font-size:18pt;
 font-family:&quot;WenQuanYi Micro Hei&quot;;
 font-weight: 400;
@@ -48,32 +56,45 @@ background-color:transparent;
 padding:6px 12px;
 }
 QPushButton#url1ResetBtn, 
-QPushButton#url2ResetBtn{
+QPushButton#url2ResetBtn,
+QPushButton#closeStatBtn,
+QPushButton#statResetBtn{
 color: #dc3545;
 border-color: #dc3545;
 }
+QPushButton:hover#url1ResetBtn, 
+QPushButton:hover#url2ResetBtn,
+QPushButton:hover#closeStatBtn,
+QPushButton:hover#statResetBtn{
+color: #fff;
+text-decoration: none;
+background-color: #dc3545;
+border-color:#dc3545;
+text-decoration: none;
+}
 QPushButton#url1CrawlBtn, 
 QPushButton#url2CrawlBtn,
-QPushButton#detectBtn{
+QPushButton#detectBtn,
+QPushButton#statBtn{
 color: #28a745;
 border-color: #28a745;
 }
 QPushButton:hover#url1CrawlBtn,  
 QPushButton:hover#url2CrawlBtn,
-QPushButton:hover#detectBtn{
+QPushButton:hover#detectBtn,
+QPushButton:hover#statBtn{
 color: #fff;
 text-decoration: none;
 background-color: #28a745;
 border-color:#28a745;
 text-decoration: none;
 }
-QPushButton:hover#url1ResetBtn, 
-QPushButton:hover#url2ResetBtn{
-color: #fff;
-text-decoration: none;
-background-color: #dc3545;
-border-color:#dc3545;
-text-decoration: none;
+QLineEdit,QTextEdit,QPlainTextEdit{
+padding:6px 12px;
+border-width:1px;
+border-style:solid;
+border-radius: 1.5px;
+border-color:rgba(0,0,0,0.2);
 }</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -140,6 +161,9 @@ text-decoration: none;
                 <weight>50</weight>
                 <bold>false</bold>
                </font>
+              </property>
+              <property name="placeholderText">
+               <string>第一篇新闻的网址</string>
               </property>
              </widget>
             </item>
@@ -210,6 +234,15 @@ text-decoration: none;
                 <weight>50</weight>
                 <bold>false</bold>
                </font>
+              </property>
+              <property name="inputMask">
+               <string/>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>第二篇新闻的网址</string>
               </property>
              </widget>
             </item>
@@ -291,6 +324,9 @@ text-decoration: none;
               <property name="readOnly">
                <bool>true</bool>
               </property>
+              <property name="backgroundVisible">
+               <bool>false</bool>
+              </property>
              </widget>
             </item>
            </layout>
@@ -330,6 +366,9 @@ text-decoration: none;
               </property>
               <property name="readOnly">
                <bool>true</bool>
+              </property>
+              <property name="backgroundVisible">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -372,6 +411,9 @@ text-decoration: none;
               <property name="locale">
                <locale language="Chinese" country="China"/>
               </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
            </layout>
@@ -408,6 +450,9 @@ text-decoration: none;
               </property>
               <property name="locale">
                <locale language="Chinese" country="China"/>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -500,10 +545,14 @@ text-decoration: none;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit"/>
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="placeholderText">
+             <string>请输入需要搜索的关键词</string>
+            </property>
+           </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="statResetBtn">
             <property name="text">
              <string>重置</string>
             </property>
@@ -670,7 +719,7 @@ text-decoration: none;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1021</width>
+     <width>1088</width>
      <height>26</height>
     </rect>
    </property>
@@ -716,12 +765,12 @@ text-decoration: none;
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>314</x>
-     <y>89</y>
+     <x>459</x>
+     <y>142</y>
     </hint>
     <hint type="destinationlabel">
-     <x>298</x>
-     <y>88</y>
+     <x>377</x>
+     <y>140</y>
     </hint>
    </hints>
   </connection>
@@ -732,17 +781,17 @@ text-decoration: none;
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>790</x>
-     <y>90</y>
+     <x>987</x>
+     <y>142</y>
     </hint>
     <hint type="destinationlabel">
-     <x>772</x>
-     <y>93</y>
+     <x>907</x>
+     <y>140</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>statResetBtn</sender>
    <signal>clicked()</signal>
    <receiver>lineEdit</receiver>
    <slot>clear()</slot>

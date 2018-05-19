@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="images">
+    <file>images/images.jpeg</file>
+    <file>images/8P3ahkD.jpg</file>
+    <file>images/light_texture_surface.jpg</file>
+    <file>images/light-blue-background.png</file>
     <file>images/icons8-google-news-24.png</file>
   </qresource>
 </RCC>

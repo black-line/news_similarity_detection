@@ -11,13 +11,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1021, 841)
+        MainWindow.resize(1088, 728)
         font = QtGui.QFont()
         font.setFamily("WenQuanYi Micro Hei")
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/images/images/icons8-google-news-24.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet("")
         MainWindow.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         font = QtGui.QFont()
@@ -26,7 +27,12 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.centralwidget.setFont(font)
-        self.centralwidget.setStyleSheet("QWidget{\n"
+        self.centralwidget.setStyleSheet("QWidget#centralwidget{\n"
+"background-color: rgb(231, 231, 231);\n"
+"}\n"
+"QWidget{\n"
+"background-color:transparent;\n"
+"opacity: 23;\n"
 "font-size:18pt;\n"
 "font-family:\"WenQuanYi Micro Hei\";\n"
 "font-weight: 400;\n"
@@ -39,32 +45,45 @@ class Ui_MainWindow(object):
 "padding:6px 12px;\n"
 "}\n"
 "QPushButton#url1ResetBtn, \n"
-"QPushButton#url2ResetBtn{\n"
+"QPushButton#url2ResetBtn,\n"
+"QPushButton#closeStatBtn,\n"
+"QPushButton#statResetBtn{\n"
 "color: #dc3545;\n"
 "border-color: #dc3545;\n"
 "}\n"
+"QPushButton:hover#url1ResetBtn, \n"
+"QPushButton:hover#url2ResetBtn,\n"
+"QPushButton:hover#closeStatBtn,\n"
+"QPushButton:hover#statResetBtn{\n"
+"color: #fff;\n"
+"text-decoration: none;\n"
+"background-color: #dc3545;\n"
+"border-color:#dc3545;\n"
+"text-decoration: none;\n"
+"}\n"
 "QPushButton#url1CrawlBtn, \n"
 "QPushButton#url2CrawlBtn,\n"
-"QPushButton#detectBtn{\n"
+"QPushButton#detectBtn,\n"
+"QPushButton#statBtn{\n"
 "color: #28a745;\n"
 "border-color: #28a745;\n"
 "}\n"
 "QPushButton:hover#url1CrawlBtn,  \n"
 "QPushButton:hover#url2CrawlBtn,\n"
-"QPushButton:hover#detectBtn{\n"
+"QPushButton:hover#detectBtn,\n"
+"QPushButton:hover#statBtn{\n"
 "color: #fff;\n"
 "text-decoration: none;\n"
 "background-color: #28a745;\n"
 "border-color:#28a745;\n"
 "text-decoration: none;\n"
 "}\n"
-"QPushButton:hover#url1ResetBtn, \n"
-"QPushButton:hover#url2ResetBtn{\n"
-"color: #fff;\n"
-"text-decoration: none;\n"
-"background-color: #dc3545;\n"
-"border-color:#dc3545;\n"
-"text-decoration: none;\n"
+"QLineEdit,QTextEdit,QPlainTextEdit{\n"
+"padding:6px 12px;\n"
+"border-width:1px;\n"
+"border-style:solid;\n"
+"border-radius: 1.5px;\n"
+"border-color:rgba(0,0,0,0.2);\n"
 "}")
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -150,6 +169,8 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.url2.setFont(font)
+        self.url2.setInputMask("")
+        self.url2.setText("")
         self.url2.setObjectName("url2")
         self.horizontalLayout.addWidget(self.url2)
         self.url2ResetBtn = QtWidgets.QPushButton(self.Page1)
@@ -197,6 +218,7 @@ class Ui_MainWindow(object):
         self.news1.setFont(font)
         self.news1.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
         self.news1.setReadOnly(True)
+        self.news1.setBackgroundVisible(False)
         self.news1.setObjectName("news1")
         self.verticalLayout_2.addWidget(self.news1)
         self.horizontalLayout_4.addLayout(self.verticalLayout_2)
@@ -221,6 +243,7 @@ class Ui_MainWindow(object):
         self.news2.setFont(font)
         self.news2.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
         self.news2.setReadOnly(True)
+        self.news2.setBackgroundVisible(False)
         self.news2.setObjectName("news2")
         self.verticalLayout.addWidget(self.news2)
         self.horizontalLayout_4.addLayout(self.verticalLayout)
@@ -247,6 +270,7 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.tag1.setFont(font)
         self.tag1.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
+        self.tag1.setReadOnly(True)
         self.tag1.setObjectName("tag1")
         self.verticalLayout_3.addWidget(self.tag1)
         self.horizontalLayout_5.addLayout(self.verticalLayout_3)
@@ -270,6 +294,7 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.tag2.setFont(font)
         self.tag2.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
+        self.tag2.setReadOnly(True)
         self.tag2.setObjectName("tag2")
         self.verticalLayout_10.addWidget(self.tag2)
         self.horizontalLayout_5.addLayout(self.verticalLayout_10)
@@ -323,9 +348,9 @@ class Ui_MainWindow(object):
         self.lineEdit = QtWidgets.QLineEdit(self.page2)
         self.lineEdit.setObjectName("lineEdit")
         self.horizontalLayout_11.addWidget(self.lineEdit)
-        self.pushButton_2 = QtWidgets.QPushButton(self.page2)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout_11.addWidget(self.pushButton_2)
+        self.statResetBtn = QtWidgets.QPushButton(self.page2)
+        self.statResetBtn.setObjectName("statResetBtn")
+        self.horizontalLayout_11.addWidget(self.statResetBtn)
         self.closeStatBtn = QtWidgets.QPushButton(self.page2)
         self.closeStatBtn.setObjectName("closeStatBtn")
         self.horizontalLayout_11.addWidget(self.closeStatBtn)
@@ -413,7 +438,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.stackedWidget, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1021, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1088, 26))
         self.menubar.setObjectName("menubar")
         self.about = QtWidgets.QMenu(self.menubar)
         font = QtGui.QFont()
@@ -437,7 +462,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(0)
         self.url1ResetBtn.clicked.connect(self.url1.clear)
         self.url2ResetBtn.clicked.connect(self.url2.clear)
-        self.pushButton_2.clicked.connect(self.lineEdit.clear)
+        self.statResetBtn.clicked.connect(self.lineEdit.clear)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -447,9 +472,11 @@ class Ui_MainWindow(object):
         self.kwBtn.setText(_translate("MainWindow", "关键词统计"))
         self.settingsBtn.setText(_translate("MainWindow", "设置"))
         self.label.setText(_translate("MainWindow", "新闻1"))
+        self.url1.setPlaceholderText(_translate("MainWindow", "第一篇新闻的网址"))
         self.url1ResetBtn.setText(_translate("MainWindow", "重置"))
         self.url1CrawlBtn.setText(_translate("MainWindow", "抓取"))
         self.label_2.setText(_translate("MainWindow", "新闻2"))
+        self.url2.setPlaceholderText(_translate("MainWindow", "第二篇新闻的网址"))
         self.url2ResetBtn.setText(_translate("MainWindow", "重置"))
         self.url2CrawlBtn.setText(_translate("MainWindow", "抓取"))
         self.title1.setText(_translate("MainWindow", "新闻1标题:"))
@@ -459,7 +486,8 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "相似度:"))
         self.detectBtn.setText(_translate("MainWindow", "开始检测"))
         self.label_8.setText(_translate("MainWindow", "关键词"))
-        self.pushButton_2.setText(_translate("MainWindow", "重置"))
+        self.lineEdit.setPlaceholderText(_translate("MainWindow", "请输入需要搜索的关键词"))
+        self.statResetBtn.setText(_translate("MainWindow", "重置"))
         self.closeStatBtn.setText(_translate("MainWindow", "停止统计"))
         self.statBtn.setText(_translate("MainWindow", "开始统计"))
         self.label_4.setText(_translate("MainWindow", "MONGODB_SERVER"))
