@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>983</width>
+    <height>809</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>WenQuanYi Micro Hei</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>新闻相似度检测</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/images/icons8-google-news-24.png</normaloff>:/images/images/icons8-google-news-24.png</iconset>
+  </property>
+  <property name="locale">
+   <locale language="Chinese" country="China"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_10">
+      <item>
+       <widget class="QPushButton" name="simiBtn">
+        <property name="text">
+         <string>相似度检测</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="kwBtn">
+        <property name="text">
+         <string>关键词统计</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="settingsBtn">
+        <property name="text">
+         <string>设置</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="Page1">
+       <layout class="QVBoxLayout" name="verticalLayout_11">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>新闻1</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="url1">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="url1ResetBtn">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+                <underline>false</underline>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>重置</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="url1CrawlBtn">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>抓取</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>新闻2</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="url2">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="url2ResetBtn">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>重置</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="url2CrawlBtn">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>抓取</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QLabel" name="title1">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>新闻1内容:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="news1">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QLabel" name="title2">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>新闻2内容:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="news2">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>新闻1标签:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="tag1">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="text">
+               <string>新闻2标签:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="tag2">
+              <property name="font">
+               <font>
+                <family>WenQuanYi Micro Hei</family>
+               </font>
+              </property>
+              <property name="locale">
+               <locale language="Chinese" country="China"/>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="font">
+             <font>
+              <family>WenQuanYi Micro Hei</family>
+             </font>
+            </property>
+            <property name="locale">
+             <locale language="Chinese" country="China"/>
+            </property>
+            <property name="text">
+             <string>相似度:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="distance">
+            <property name="font">
+             <font>
+              <family>WenQuanYi Micro Hei</family>
+             </font>
+            </property>
+            <property name="locale">
+             <locale language="Chinese" country="China"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="detectBtn">
+            <property name="font">
+             <font>
+              <family>WenQuanYi Micro Hei</family>
+             </font>
+            </property>
+            <property name="locale">
+             <locale language="Chinese" country="China"/>
+            </property>
+            <property name="text">
+             <string>开始检测</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+       <zorder>kwBtn</zorder>
+       <zorder>simiBtn</zorder>
+       <zorder>tag1</zorder>
+      </widget>
+      <widget class="QWidget" name="page2">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>关键词</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="text">
+             <string>重置</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="closeStatBtn">
+            <property name="text">
+             <string>停止统计</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="statBtn">
+            <property name="text">
+             <string>开始统计</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <item>
+           <widget class="QPlainTextEdit" name="output">
+            <property name="font">
+             <font>
+              <family>Ubuntu Mono</family>
+             </font>
+            </property>
+            <property name="locale">
+             <locale language="English" country="UnitedStates"/>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPlainTextEdit" name="result">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page3">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_15">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_9">
+              <property name="text">
+               <string>MONGODB_SERVER:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_10">
+              <property name="text">
+               <string>MONGODB_PORT:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLineEdit" name="lineEdit_2"/>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_3"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="text">
+                 <string>检测</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_3">
+                <property name="text">
+                 <string>确定</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <item>
+               <widget class="QPushButton" name="pushButton_4">
+                <property name="text">
+                 <string>检测</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_5">
+                <property name="text">
+                 <string>确定</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>配置清单:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextEdit" name="textEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+   <zorder>stackedWidget</zorder>
+   <zorder>simiBtn</zorder>
+   <zorder>kwBtn</zorder>
+   <zorder>kwBtn</zorder>
+   <zorder>simiBtn</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>983</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="about">
+    <property name="font">
+     <font>
+      <family>WenQuanYi Micro Hei</family>
+     </font>
+    </property>
+    <property name="locale">
+     <locale language="Chinese" country="China"/>
+    </property>
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="exit"/>
+   </widget>
+   <addaction name="about"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="exit">
+   <property name="text">
+    <string>退出</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>WenQuanYi Micro Hei</family>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>url1ResetBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>url1</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>314</x>
+     <y>89</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>88</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>url2ResetBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>url2</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>790</x>
+     <y>90</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>772</x>
+     <y>93</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>lineEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>790</x>
+     <y>95</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>776</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/icons8-google-news-24.png</file>
+  </qresource>
+</RCC>
