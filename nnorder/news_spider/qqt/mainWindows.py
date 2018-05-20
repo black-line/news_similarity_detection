@@ -6,7 +6,7 @@ from ui_MainWindows import Ui_MainWindow
 from goo import myGoose
 import jieba.analyse
 import logging
-
+import time
 logger = logging.getLogger('finalwr_logger')
 from MySimHash import MySimHash
 
@@ -88,6 +88,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                      text-decoration: none;
                                  """)
 
+    # def closeStatBtn_on_click(self):
+    #     print('stopStat button clicked')
+    #     self.statBtn.setEnabled(True)
+    #     print(self.p.returncode)
+    #     # if self.process.isOpen():
+    #     #     self.process.close()
+    #     #     print('close process')
+    #
+    # def statBtn_on_click(self):
+    #     print('stat button clicked')
+    #     self.statBtn.setEnabled(False)
+    #     self.output.clear()
+    #     # self.process.start('ping', ['127.0.0.1'])
+    #     self.p = subprocess.Popen("scrapy crawl news_spider", cwd='/home/watmel/PycharmProjects/news_similarity_detection/nnorder/news_spider/news_spider/spiders',shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    #     cursor = self.output.textCursor()
+    #     for line in self.p.stdout.readlines():
+    #         cursor.insertText(str(line, 'utf-8'))
+    #     if self.p.returncode != 0:
+    #         cursor.insertText("error")
+
     def closeStatBtn_on_click(self):
         print('stopStat button clicked')
         if self.process.isOpen():
@@ -97,7 +117,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def statBtn_on_click(self):
         print('stat button clicked')
         self.output.clear()
-        self.process.start('ping', ['127.0.0.1'])
+        self.process.setProcessChannelMode(QProcess.MergedChannels)
+        # self.process.start('ping', ['127.0.0.1'])
+        self.process.start('ls')
+        # self.process.start('ls')
+        self.process.waitForFinished(10)
+        self.process.start('python post_crawl.py > hahaha.log')
+
+        # pc = post_crawl()
+        # tag_rank = pc.get_tag_rank()
+        # self.result.setPlainText(str(tag_rank))
+
+        # self.process.start('scrapy bench')
+        # self.process.start('python runinside.py')
 
     def dataReady(self):
         cursor = self.output.textCursor()

@@ -41,6 +41,9 @@
     <string notr="true">QWidget#centralwidget{
 background-color: rgb(231, 231, 231);
 }
+QPlainTextEdit#output{
+font-size:6pt;
+}
 QWidget{
 background-color:transparent;
 opacity: 23;
@@ -126,7 +129,7 @@ border-color:rgba(0,0,0,0.2);
     <item row="1" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="Page1">
        <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -581,7 +584,7 @@ border-color:rgba(0,0,0,0.2);
             <property name="font">
              <font>
               <family>WenQuanYi Micro Hei</family>
-              <pointsize>18</pointsize>
+              <pointsize>6</pointsize>
               <weight>50</weight>
               <bold>false</bold>
              </font>

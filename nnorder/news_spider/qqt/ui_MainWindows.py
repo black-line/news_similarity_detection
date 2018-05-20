@@ -30,6 +30,9 @@ class Ui_MainWindow(object):
         self.centralwidget.setStyleSheet("QWidget#centralwidget{\n"
 "background-color: rgb(231, 231, 231);\n"
 "}\n"
+"QPlainTextEdit#output{\n"
+"font-size:6pt;\n"
+"}\n"
 "QWidget{\n"
 "background-color:transparent;\n"
 "opacity: 23;\n"
@@ -363,7 +366,7 @@ class Ui_MainWindow(object):
         self.output = QtWidgets.QPlainTextEdit(self.page2)
         font = QtGui.QFont()
         font.setFamily("WenQuanYi Micro Hei")
-        font.setPointSize(18)
+        font.setPointSize(6)
         font.setBold(False)
         font.setWeight(50)
         self.output.setFont(font)
@@ -459,7 +462,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.about.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         self.url1ResetBtn.clicked.connect(self.url1.clear)
         self.url2ResetBtn.clicked.connect(self.url2.clear)
         self.statResetBtn.clicked.connect(self.lineEdit.clear)
