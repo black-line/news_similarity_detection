@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1088, 728)
+        MainWindow.resize(714, 550)
         font = QtGui.QFont()
         font.setFamily("WenQuanYi Micro Hei")
         MainWindow.setFont(font)
@@ -49,15 +49,15 @@ class Ui_MainWindow(object):
 "}\n"
 "QPushButton#url1ResetBtn, \n"
 "QPushButton#url2ResetBtn,\n"
-"QPushButton#closeStatBtn,\n"
-"QPushButton#statResetBtn{\n"
+"QPushButton#closeSearchBtn,\n"
+"QPushButton#searchResetBtn{\n"
 "color: #dc3545;\n"
 "border-color: #dc3545;\n"
 "}\n"
 "QPushButton:hover#url1ResetBtn, \n"
 "QPushButton:hover#url2ResetBtn,\n"
-"QPushButton:hover#closeStatBtn,\n"
-"QPushButton:hover#statResetBtn{\n"
+"QPushButton:hover#closeSearchBtn,\n"
+"QPushButton:hover#searchResetBtn{\n"
 "color: #fff;\n"
 "text-decoration: none;\n"
 "background-color: #dc3545;\n"
@@ -67,19 +67,27 @@ class Ui_MainWindow(object):
 "QPushButton#url1CrawlBtn, \n"
 "QPushButton#url2CrawlBtn,\n"
 "QPushButton#detectBtn,\n"
-"QPushButton#statBtn{\n"
+"QPushButton#searchBtn,\n"
+"QPushButton#kwDetectBtn,\n"
+"QPushButton#getlistBtn{\n"
 "color: #28a745;\n"
 "border-color: #28a745;\n"
 "}\n"
 "QPushButton:hover#url1CrawlBtn,  \n"
 "QPushButton:hover#url2CrawlBtn,\n"
 "QPushButton:hover#detectBtn,\n"
-"QPushButton:hover#statBtn{\n"
+"QPushButton:hover#searchBtn,\n"
+"QPushButton:hover#kwDetectBtn,\n"
+"QPushButton:hover#getlistBtn{\n"
 "color: #fff;\n"
 "text-decoration: none;\n"
 "background-color: #28a745;\n"
 "border-color:#28a745;\n"
 "text-decoration: none;\n"
+"}\n"
+"QPushButton:disabled#searchBtn{\n"
+"color:#6c757d;\n"
+"border-color: #6c757d;\n"
 "}\n"
 "QLineEdit,QTextEdit,QPlainTextEdit{\n"
 "padding:6px 12px;\n"
@@ -87,6 +95,11 @@ class Ui_MainWindow(object):
 "border-style:solid;\n"
 "border-radius: 1.5px;\n"
 "border-color:rgba(0,0,0,0.2);\n"
+"}\n"
+"QComboBox{\n"
+"background-color:rgb(231, 231, 231);\n"
+"/*background-color: rgb(231, 231, 231);*/\n"
+"color: #000;\n"
 "}")
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -341,29 +354,36 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.Page1)
         self.page2 = QtWidgets.QWidget()
         self.page2.setObjectName("page2")
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.page2)
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.page2)
+        self.gridLayout_2.setObjectName("gridLayout_2")
         self.horizontalLayout_11 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_11.setObjectName("horizontalLayout_11")
         self.label_8 = QtWidgets.QLabel(self.page2)
         self.label_8.setObjectName("label_8")
         self.horizontalLayout_11.addWidget(self.label_8)
-        self.lineEdit = QtWidgets.QLineEdit(self.page2)
-        self.lineEdit.setObjectName("lineEdit")
-        self.horizontalLayout_11.addWidget(self.lineEdit)
-        self.statResetBtn = QtWidgets.QPushButton(self.page2)
-        self.statResetBtn.setObjectName("statResetBtn")
-        self.horizontalLayout_11.addWidget(self.statResetBtn)
-        self.closeStatBtn = QtWidgets.QPushButton(self.page2)
-        self.closeStatBtn.setObjectName("closeStatBtn")
-        self.horizontalLayout_11.addWidget(self.closeStatBtn)
-        self.statBtn = QtWidgets.QPushButton(self.page2)
-        self.statBtn.setObjectName("statBtn")
-        self.horizontalLayout_11.addWidget(self.statBtn)
-        self.verticalLayout_4.addLayout(self.horizontalLayout_11)
-        self.horizontalLayout_12 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
+        self.keyword = QtWidgets.QLineEdit(self.page2)
+        self.keyword.setObjectName("keyword")
+        self.horizontalLayout_11.addWidget(self.keyword)
+        self.searchResetBtn = QtWidgets.QPushButton(self.page2)
+        self.searchResetBtn.setObjectName("searchResetBtn")
+        self.horizontalLayout_11.addWidget(self.searchResetBtn)
+        self.closeSearchBtn = QtWidgets.QPushButton(self.page2)
+        self.closeSearchBtn.setObjectName("closeSearchBtn")
+        self.horizontalLayout_11.addWidget(self.closeSearchBtn)
+        self.searchBtn = QtWidgets.QPushButton(self.page2)
+        self.searchBtn.setObjectName("searchBtn")
+        self.horizontalLayout_11.addWidget(self.searchBtn)
+        self.getlistBtn = QtWidgets.QPushButton(self.page2)
+        self.getlistBtn.setObjectName("getlistBtn")
+        self.horizontalLayout_11.addWidget(self.getlistBtn)
+        self.kwDetectBtn = QtWidgets.QPushButton(self.page2)
+        self.kwDetectBtn.setObjectName("kwDetectBtn")
+        self.horizontalLayout_11.addWidget(self.kwDetectBtn)
+        self.gridLayout_2.addLayout(self.horizontalLayout_11, 0, 0, 1, 1)
+        self.gridLayout_3 = QtWidgets.QGridLayout()
+        self.gridLayout_3.setObjectName("gridLayout_3")
         self.output = QtWidgets.QPlainTextEdit(self.page2)
+        self.output.setMaximumSize(QtCore.QSize(600, 16777215))
         font = QtGui.QFont()
         font.setFamily("WenQuanYi Micro Hei")
         font.setPointSize(6)
@@ -373,12 +393,54 @@ class Ui_MainWindow(object):
         self.output.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.output.setReadOnly(True)
         self.output.setObjectName("output")
-        self.horizontalLayout_12.addWidget(self.output)
-        self.result = QtWidgets.QPlainTextEdit(self.page2)
-        self.result.setReadOnly(True)
-        self.result.setObjectName("result")
-        self.horizontalLayout_12.addWidget(self.result)
-        self.verticalLayout_4.addLayout(self.horizontalLayout_12)
+        self.gridLayout_3.addWidget(self.output, 0, 0, 1, 1)
+        self.verticalLayout_13 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.horizontalLayout_15 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_15.setObjectName("horizontalLayout_15")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.formLayout = QtWidgets.QFormLayout()
+        self.formLayout.setObjectName("formLayout")
+        self.label_12 = QtWidgets.QLabel(self.page2)
+        self.label_12.setObjectName("label_12")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_12)
+        self.leftnews = QtWidgets.QComboBox(self.page2)
+        self.leftnews.setObjectName("leftnews")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.leftnews)
+        self.verticalLayout_4.addLayout(self.formLayout)
+        self.leftnewsContent = QtWidgets.QTextEdit(self.page2)
+        self.leftnewsContent.setObjectName("leftnewsContent")
+        self.verticalLayout_4.addWidget(self.leftnewsContent)
+        self.horizontalLayout_15.addLayout(self.verticalLayout_4)
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.formLayout_2 = QtWidgets.QFormLayout()
+        self.formLayout_2.setObjectName("formLayout_2")
+        self.label_13 = QtWidgets.QLabel(self.page2)
+        self.label_13.setObjectName("label_13")
+        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_13)
+        self.rightnews = QtWidgets.QComboBox(self.page2)
+        self.rightnews.setObjectName("rightnews")
+        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.rightnews)
+        self.verticalLayout_12.addLayout(self.formLayout_2)
+        self.rightnewsContent = QtWidgets.QTextEdit(self.page2)
+        self.rightnewsContent.setObjectName("rightnewsContent")
+        self.verticalLayout_12.addWidget(self.rightnewsContent)
+        self.horizontalLayout_15.addLayout(self.verticalLayout_12)
+        self.verticalLayout_13.addLayout(self.horizontalLayout_15)
+        self.formLayout_3 = QtWidgets.QFormLayout()
+        self.formLayout_3.setObjectName("formLayout_3")
+        self.label_9 = QtWidgets.QLabel(self.page2)
+        self.label_9.setObjectName("label_9")
+        self.formLayout_3.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_9)
+        self.searchDistance = QtWidgets.QLabel(self.page2)
+        self.searchDistance.setText("")
+        self.searchDistance.setObjectName("searchDistance")
+        self.formLayout_3.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.searchDistance)
+        self.verticalLayout_13.addLayout(self.formLayout_3)
+        self.gridLayout_3.addLayout(self.verticalLayout_13, 0, 1, 1, 1)
+        self.gridLayout_2.addLayout(self.gridLayout_3, 1, 0, 1, 1)
         self.stackedWidget.addWidget(self.page2)
         self.page3 = QtWidgets.QWidget()
         self.page3.setObjectName("page3")
@@ -441,7 +503,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.stackedWidget, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1088, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 714, 26))
         self.menubar.setObjectName("menubar")
         self.about = QtWidgets.QMenu(self.menubar)
         font = QtGui.QFont()
@@ -465,14 +527,14 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(1)
         self.url1ResetBtn.clicked.connect(self.url1.clear)
         self.url2ResetBtn.clicked.connect(self.url2.clear)
-        self.statResetBtn.clicked.connect(self.lineEdit.clear)
+        self.searchResetBtn.clicked.connect(self.keyword.clear)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "新闻相似度检测"))
         self.simiBtn.setText(_translate("MainWindow", "相似度检测"))
-        self.kwBtn.setText(_translate("MainWindow", "关键词统计"))
+        self.kwBtn.setText(_translate("MainWindow", "关键词搜索"))
         self.settingsBtn.setText(_translate("MainWindow", "设置"))
         self.label.setText(_translate("MainWindow", "新闻1"))
         self.url1.setPlaceholderText(_translate("MainWindow", "第一篇新闻的网址"))
@@ -489,10 +551,15 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "相似度:"))
         self.detectBtn.setText(_translate("MainWindow", "开始检测"))
         self.label_8.setText(_translate("MainWindow", "关键词"))
-        self.lineEdit.setPlaceholderText(_translate("MainWindow", "请输入需要搜索的关键词"))
-        self.statResetBtn.setText(_translate("MainWindow", "重置"))
-        self.closeStatBtn.setText(_translate("MainWindow", "停止统计"))
-        self.statBtn.setText(_translate("MainWindow", "开始统计"))
+        self.keyword.setPlaceholderText(_translate("MainWindow", "请输入需要搜索的关键词"))
+        self.searchResetBtn.setText(_translate("MainWindow", "重置"))
+        self.closeSearchBtn.setText(_translate("MainWindow", "停止搜索"))
+        self.searchBtn.setText(_translate("MainWindow", "开始搜索"))
+        self.getlistBtn.setText(_translate("MainWindow", "获取列表"))
+        self.kwDetectBtn.setText(_translate("MainWindow", "开始检测"))
+        self.label_12.setText(_translate("MainWindow", "新闻1"))
+        self.label_13.setText(_translate("MainWindow", "新闻2"))
+        self.label_9.setText(_translate("MainWindow", "相似度："))
         self.label_4.setText(_translate("MainWindow", "MONGODB_SERVER"))
         self.label_7.setText(_translate("MainWindow", "MONGODB_PORT"))
         self.lineEdit_2.setText(_translate("MainWindow", "localhost"))
