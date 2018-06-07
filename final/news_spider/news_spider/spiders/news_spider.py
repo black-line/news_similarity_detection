@@ -15,7 +15,7 @@ logger = logging.getLogger('news_spider_logger')
 class NewsSpider(scrapy.Spider):
     name = "news_spider"
 
-    kw="友谊勋章"
+    kw="和谐社会"
 
     def start_requests(self):
         urls = [

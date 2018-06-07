@@ -272,7 +272,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def url1CrawlBtn_on_click(self):
         # print('url1CrawlBtn clicked')
-        self.url1.setText('http://news.sina.com.cn/o/2018-05-16/doc-ihapkuvm6910260.shtml')
+        self.url1.setText('http://news.sina.com.cn/c/2018-06-07/doc-ihcscwwz9278602.shtml')
         if self.url1.text():
             clean_text, title = myGoose(url=self.url1.text()).get_cleaned_text()
             # clean_text = '123'
@@ -284,7 +284,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def url2CrawlBtn_on_click(self):
         # print('url2CrawlBtn clicked')
-        self.url2.setText('http://finance.ifeng.com/a/20180515/16279179_0.shtml')
+        self.url2.setText('http://china.chinadaily.com.cn/2018-06/08/content_36349835.htm')
         if self.url2.text():
             clean_text, title = myGoose(url=self.url2.text()).get_cleaned_text()
             # clean_text = '123'
