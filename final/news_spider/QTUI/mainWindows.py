@@ -4,17 +4,21 @@ from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow, QStackedWidget
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QProcess, QThread, QThreadPool, QObject, pyqtSignal, pyqtSlot, QRunnable
 from ui_MainWindows import Ui_MainWindow
-from exceptUI import myGoose, post_crawl, MySimHash
+from exceptUI import myGoose, post_crawl, check_kw, MySimHash
 import jieba.analyse
 import logging
 import time
+
 logger = logging.getLogger('finalwr_logger')
+import subprocess
+
 
 class WorkerSignals(QObject):
     started = pyqtSignal()
     finished = pyqtSignal()
     error = pyqtSignal(tuple)
     result = pyqtSignal(object)
+
 
 class Worker(QRunnable):
     def __init__(self, fn, *args, **kwargs):
@@ -88,6 +92,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.searchBtn.clicked.connect(self.searchBtn_on_click)
         self.closeSearchBtn.clicked.connect(self.closeSearchBtn_on_click)
+
+        self.mpComfirmBtn.clicked.connect(self.mpComfirmBtn_on_click)
+
         # QProcess object for external app
         self.process = QProcess(self)
         # QProcess emits `readyRead` when there is data to be read
@@ -98,8 +105,38 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.process.started.connect(lambda: self.searchBtn.setEnabled(False))
         self.process.finished.connect(lambda: self.searchBtn.setEnabled(True))
 
+        self.coll_name = None
+
+
+        output = subprocess.Popen(["sed -n '74p' ../news_spider/settings.py"], stdout=subprocess.PIPE,
+                                  shell=True).communicate()
+        self.SERVERTEXT = output[0].decode('utf-8')
+        output = subprocess.Popen(["sed -n '75p' ../news_spider/settings.py"], stdout=subprocess.PIPE,
+                                  shell=True).communicate()
+        self.PORTTEXT = output[0].decode('utf-8')
+        self.configList.setText(self.SERVERTEXT+self.PORTTEXT)
+        self.PORT = self.PORTTEXT.split('=')[1]
+
+
         # self.threadpool = QThreadPool()
         # print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
+
+    def mpComfirmBtn_on_click(self):
+        mpValue = self.mpValue.text()
+        print(mpValue)
+        if mpValue:
+            self.process.start('sed',
+                               ['-i', 's/^MONGODB_PORT=.*/MONGODB_PORT={0}/'.format(mpValue),
+                                '../news_spider/settings.py'])
+            output = subprocess.Popen(["sed -n '74p' ../news_spider/settings.py"], stdout=subprocess.PIPE,
+                                      shell=True).communicate()
+            self.SERVERTEXT = output[0].decode('utf-8')
+            output = subprocess.Popen(["sed -n '75p' ../news_spider/settings.py"], stdout=subprocess.PIPE,
+                                      shell=True).communicate()
+            self.PORTTEXT = output[0].decode('utf-8')
+            self.configList.clear()
+            self.configList.setText(self.SERVERTEXT + self.PORTTEXT)
+            self.PORT = self.PORTTEXT.split('=')[1]
 
     def from_to(self, to, toBtn):
         if self.stackedWidget.currentIndex() == to:
@@ -145,19 +182,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.process.close()
             print('close process')
 
-    def execute_this_fn(self):
-        pc = post_crawl()
-        tag_rank = pc.get_tag_rank()
-        return tag_rank
+    # def execute_this_fn(self):
+    #     pc = post_crawl()
+    #     tag_rank = pc.get_tag_rank()
+    #     return tag_rank
     def print_output(self, s):
         tag_to_str = """<table><tr><td>{0}</td><td>{1}</td></tr>""".format('关键词', '热度值')
         for t in s:
             tag_to_str += '<tr><td><b>{0}:</b></td><td>{1}</td></tr>'.format(t['_id'], t['value'])
         tag_to_str += """</table>"""
         self.result.setText(tag_to_str)
+
     def thread_start(self):
         self.statBtn.setEnabled(False)
         print("THREAD START!")
+
     def thread_complete(self):
         self.statBtn.setEnabled(True)
         print("THREAD COMPLETE!")
@@ -174,25 +213,39 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         print(kw_urlstyle)
         if kw_urlstyle:
             self.output.clear()
-            self.process.start('sed',['-i','s/^\s*kw=".*"/    kw="{0}"/'.format(kw_urlstyle),'../news_spider/spiders/news_spider.py'])
-            self.process.waitForFinished(10)
-            self.process.start('scrapy crawl news_spider')
-            # after crawl
-            # getlistBtn_on_click
+            ck = check_kw(kw_urlstyle, self.PORT)
+            flag, coll_name = ck.is_crawled()
+            self.coll_name = coll_name
+            if not flag:
+                self.process.start('sed', ['-i', 's/^\s*kw=".*"/    kw="{0}"/'.format(kw_urlstyle),
+                                           '../news_spider/spiders/news_spider.py'])
+
+                self.process.waitForFinished(10)
+                # self.process.start('sed',['-i','s/^MONGODB_COLLECTION=".*"/MONGODB_COLLECTION="{0}"/'.format(self.coll_name),'../news_spider/spiders/news_spider.py'])
+                self.process.start('sed',
+                                   ['-i', 's/^MONGODB_COLLECTION=".*"/MONGODB_COLLECTION="{0}"/'.format(self.coll_name),
+                                    '../news_spider/settings.py'])
+                self.process.waitForFinished(10)
+
+                self.process.start('scrapy crawl news_spider')
+            else:
+                self.output.setPlainText('该关键词已抓取,可以直接点击获取列表按钮')
+
         else:
             pass
 
     def getlistBtn_on_click(self):
-        pc = post_crawl()
+        pc = post_crawl(self.coll_name, self.PORT)
         title_list = pc.get_title_list()
+        print("title_list:" + str(title_list))
         self.leftnews.addItems(title_list)
         self.rightnews.addItems(title_list)
         self.leftnews.activated.connect(self.left_combox_on_activate)
         self.rightnews.activated.connect(self.right_combox_on_activate)
 
     def kwDetectBtn_on_click(self):
-        text1=self.leftnewsContent.toPlainText()
-        text2=self.rightnewsContent.toPlainText()
+        text1 = self.leftnewsContent.toPlainText()
+        text2 = self.rightnewsContent.toPlainText()
         if text1 and text2:
             s1, t1 = self.get_simhash(text=text1)
             s2, t2 = self.get_simhash(text=text2)
@@ -201,15 +254,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def left_combox_on_activate(self):
         title = self.leftnews.currentText()
-        pc = post_crawl()
+        pc = post_crawl(self.coll_name, self.PORT)
         text = pc.get_text_by_title(title)
         self.leftnewsContent.setText(text)
 
     def right_combox_on_activate(self):
         title = self.rightnews.currentText()
-        pc = post_crawl()
+        pc = post_crawl(self.coll_name, self.PORT)
         text = pc.get_text_by_title(title)
         self.rightnewsContent.setText(text)
+
     def dataReady(self):
         cursor = self.output.textCursor()
         cursor.movePosition(cursor.End)
@@ -252,8 +306,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def detectBtn_on_click(self):
         print('detectBtn clicked')
-        text1=self.news1.toPlainText()
-        text2=self.news2.toPlainText()
+        text1 = self.news1.toPlainText()
+        text2 = self.news2.toPlainText()
         if text1 and text2:
             s1, t1 = self.get_simhash(text=text1)
             s2, t2 = self.get_simhash(text=text2)

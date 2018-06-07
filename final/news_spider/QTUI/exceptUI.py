@@ -63,14 +63,47 @@ class myGoose(object):
 
 
 
+class check_kw(object):
+    def __init__(self, kw, post):
+        self.MONGODB_SERVER = "localhost"
+        self.MONGODB_PORT = int(post)
+        self.MONGODB_DB = "news_spider_40"
+        self.MONGODB_COLLECTION = "news_kw"
+        self.kw = kw
+        print(self.MONGODB_PORT)
 
+        client = MongoClient(self.MONGODB_SERVER, self.MONGODB_PORT)
+        db = client[self.MONGODB_DB]
+        self.coll = db[self.MONGODB_COLLECTION]
+
+    def is_crawled(self):
+        flag = False
+        kw = self.kw
+        result = self.coll.find_one({"keyword": kw})
+        if result is not None:
+            print('该关键词已抓取,collection是: '+result['collection'])
+            coll_name = result['collection']
+            flag = True
+        else:
+            coll_name = 'coll_'+str(mmh3.hash(kw.encode('utf-8'), signed=False))
+            flag = False
+            data = {'keyword': self.kw,
+                    'collection': coll_name}
+            self.coll.insert_one(data)
+            print('该关键词未抓取,collection是: '+ coll_name)
+        return flag, coll_name
+
+    def get_text_by_title(self,title):
+        if title:
+            result = self.coll.find_one({"title": title})
+            return result['cleaned_text']
 
 class post_crawl(object):
-    def __init__(self):
+    def __init__(self, coll_name, post):
         self.MONGODB_SERVER = "localhost"
-        self.MONGODB_PORT = 27017
+        self.MONGODB_PORT = int(post)
         self.MONGODB_DB = "news_spider_40"
-        self.MONGODB_COLLECTION = "news_xjp_test"
+        self.MONGODB_COLLECTION = coll_name
 
         client = MongoClient(self.MONGODB_SERVER, self.MONGODB_PORT)
         db = client[self.MONGODB_DB]

@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(714, 550)
+        MainWindow.resize(762, 550)
         font = QtGui.QFont()
         font.setFamily("WenQuanYi Micro Hei")
         MainWindow.setFont(font)
@@ -69,7 +69,9 @@ class Ui_MainWindow(object):
 "QPushButton#detectBtn,\n"
 "QPushButton#searchBtn,\n"
 "QPushButton#kwDetectBtn,\n"
-"QPushButton#getlistBtn{\n"
+"QPushButton#getlistBtn,\n"
+"QPushButton#msComfirmBtn,\n"
+"QPushButton#mpComfirmBtn{\n"
 "color: #28a745;\n"
 "border-color: #28a745;\n"
 "}\n"
@@ -78,13 +80,31 @@ class Ui_MainWindow(object):
 "QPushButton:hover#detectBtn,\n"
 "QPushButton:hover#searchBtn,\n"
 "QPushButton:hover#kwDetectBtn,\n"
-"QPushButton:hover#getlistBtn{\n"
+"QPushButton:hover#getlistBtn,\n"
+"QPushButton:hover#msComfirmBtn,\n"
+"QPushButton:hover#mpComfirmBtn{\n"
 "color: #fff;\n"
 "text-decoration: none;\n"
 "background-color: #28a745;\n"
 "border-color:#28a745;\n"
 "text-decoration: none;\n"
 "}\n"
+"\n"
+"QPushButton#msTestBtn,\n"
+"QPushButton#mpTestBtn{\n"
+"color:#007bff;\n"
+"border-color: #007bff;\n"
+"}\n"
+"QPushButton:hover#msTestBtn,\n"
+"QPushButton:hover#mpTestBtn{\n"
+"color: #fff;\n"
+"text-decoration: none;\n"
+"background-color: #007bff;\n"
+"border-color:#007bff;\n"
+"text-decoration: none;\n"
+"}\n"
+"\n"
+"\n"
 "QPushButton:disabled#searchBtn{\n"
 "color:#6c757d;\n"
 "border-color: #6c757d;\n"
@@ -453,39 +473,39 @@ class Ui_MainWindow(object):
         self.label_4 = QtWidgets.QLabel(self.page3)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_6.addWidget(self.label_4)
-        self.label_7 = QtWidgets.QLabel(self.page3)
-        self.label_7.setObjectName("label_7")
-        self.verticalLayout_6.addWidget(self.label_7)
+        self.mpText = QtWidgets.QLabel(self.page3)
+        self.mpText.setObjectName("mpText")
+        self.verticalLayout_6.addWidget(self.mpText)
         self.horizontalLayout_8.addLayout(self.verticalLayout_6)
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.lineEdit_2 = QtWidgets.QLineEdit(self.page3)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.verticalLayout_7.addWidget(self.lineEdit_2)
-        self.lineEdit_3 = QtWidgets.QLineEdit(self.page3)
-        self.lineEdit_3.setObjectName("lineEdit_3")
-        self.verticalLayout_7.addWidget(self.lineEdit_3)
+        self.mpValue = QtWidgets.QLineEdit(self.page3)
+        self.mpValue.setObjectName("mpValue")
+        self.verticalLayout_7.addWidget(self.mpValue)
         self.horizontalLayout_8.addLayout(self.verticalLayout_7)
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.pushButton_3 = QtWidgets.QPushButton(self.page3)
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.horizontalLayout_6.addWidget(self.pushButton_3)
-        self.pushButton = QtWidgets.QPushButton(self.page3)
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_6.addWidget(self.pushButton)
+        self.msTestBtn = QtWidgets.QPushButton(self.page3)
+        self.msTestBtn.setObjectName("msTestBtn")
+        self.horizontalLayout_6.addWidget(self.msTestBtn)
+        self.msComfirmBtn = QtWidgets.QPushButton(self.page3)
+        self.msComfirmBtn.setObjectName("msComfirmBtn")
+        self.horizontalLayout_6.addWidget(self.msComfirmBtn)
         self.verticalLayout_8.addLayout(self.horizontalLayout_6)
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.pushButton_4 = QtWidgets.QPushButton(self.page3)
-        self.pushButton_4.setStyleSheet("")
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.horizontalLayout_7.addWidget(self.pushButton_4)
-        self.pushButton_5 = QtWidgets.QPushButton(self.page3)
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.horizontalLayout_7.addWidget(self.pushButton_5)
+        self.mpTestBtn = QtWidgets.QPushButton(self.page3)
+        self.mpTestBtn.setStyleSheet("")
+        self.mpTestBtn.setObjectName("mpTestBtn")
+        self.horizontalLayout_7.addWidget(self.mpTestBtn)
+        self.mpComfirmBtn = QtWidgets.QPushButton(self.page3)
+        self.mpComfirmBtn.setObjectName("mpComfirmBtn")
+        self.horizontalLayout_7.addWidget(self.mpComfirmBtn)
         self.verticalLayout_8.addLayout(self.horizontalLayout_7)
         self.horizontalLayout_8.addLayout(self.verticalLayout_8)
         self.verticalLayout_9.addLayout(self.horizontalLayout_8)
@@ -494,16 +514,16 @@ class Ui_MainWindow(object):
         self.label_11 = QtWidgets.QLabel(self.page3)
         self.label_11.setObjectName("label_11")
         self.verticalLayout_5.addWidget(self.label_11)
-        self.textEdit = QtWidgets.QTextEdit(self.page3)
-        self.textEdit.setReadOnly(True)
-        self.textEdit.setObjectName("textEdit")
-        self.verticalLayout_5.addWidget(self.textEdit)
+        self.configList = QtWidgets.QTextEdit(self.page3)
+        self.configList.setReadOnly(True)
+        self.configList.setObjectName("configList")
+        self.verticalLayout_5.addWidget(self.configList)
         self.verticalLayout_9.addLayout(self.verticalLayout_5)
         self.stackedWidget.addWidget(self.page3)
         self.gridLayout.addWidget(self.stackedWidget, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 714, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 762, 26))
         self.menubar.setObjectName("menubar")
         self.about = QtWidgets.QMenu(self.menubar)
         font = QtGui.QFont()
@@ -524,7 +544,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.about.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
         self.url1ResetBtn.clicked.connect(self.url1.clear)
         self.url2ResetBtn.clicked.connect(self.url2.clear)
         self.searchResetBtn.clicked.connect(self.keyword.clear)
@@ -549,26 +569,31 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "新闻1标签:"))
         self.label_6.setText(_translate("MainWindow", "新闻2标签:"))
         self.label_3.setText(_translate("MainWindow", "相似度:"))
-        self.detectBtn.setText(_translate("MainWindow", "开始检测"))
+        self.detectBtn.setText(_translate("MainWindow", "检测"))
         self.label_8.setText(_translate("MainWindow", "关键词"))
         self.keyword.setPlaceholderText(_translate("MainWindow", "请输入需要搜索的关键词"))
         self.searchResetBtn.setText(_translate("MainWindow", "重置"))
         self.closeSearchBtn.setText(_translate("MainWindow", "停止搜索"))
-        self.searchBtn.setText(_translate("MainWindow", "开始搜索"))
+        self.searchBtn.setText(_translate("MainWindow", "搜索"))
         self.getlistBtn.setText(_translate("MainWindow", "获取列表"))
-        self.kwDetectBtn.setText(_translate("MainWindow", "开始检测"))
+        self.kwDetectBtn.setText(_translate("MainWindow", "检测"))
         self.label_12.setText(_translate("MainWindow", "新闻1"))
         self.label_13.setText(_translate("MainWindow", "新闻2"))
         self.label_9.setText(_translate("MainWindow", "相似度："))
         self.label_4.setText(_translate("MainWindow", "MONGODB_SERVER"))
-        self.label_7.setText(_translate("MainWindow", "MONGODB_PORT"))
+        self.mpText.setText(_translate("MainWindow", "MONGODB_PORT"))
         self.lineEdit_2.setText(_translate("MainWindow", "localhost"))
-        self.lineEdit_3.setText(_translate("MainWindow", "27017"))
-        self.pushButton_3.setText(_translate("MainWindow", "检测"))
-        self.pushButton.setText(_translate("MainWindow", "确定"))
-        self.pushButton_4.setText(_translate("MainWindow", "检测"))
-        self.pushButton_5.setText(_translate("MainWindow", "确定"))
+        self.mpValue.setText(_translate("MainWindow", "27017"))
+        self.msTestBtn.setText(_translate("MainWindow", "检测"))
+        self.msComfirmBtn.setText(_translate("MainWindow", "确定"))
+        self.mpTestBtn.setText(_translate("MainWindow", "检测"))
+        self.mpComfirmBtn.setText(_translate("MainWindow", "确定"))
         self.label_11.setText(_translate("MainWindow", "配置清单:"))
+        self.configList.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'WenQuanYi Micro Hei\'; font-size:18pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.about.setTitle(_translate("MainWindow", "关于"))
         self.exit.setText(_translate("MainWindow", "退出"))
         self.exit.setShortcut(_translate("MainWindow", "Ctrl+Q"))
